@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jproxy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jproxy
+  template:
+    metadata:
+      labels:
+        app: jproxy
+    spec:
+      containers:
+      - name: jproxy
+        image: ghcr.io/gantzzz/jproxy:latest
+        ports:
+        - containerPort: 8810
+        securityContext:
+          capabilities:
+            add: ["NET_RAW", "NET_BIND_SERVICE"]

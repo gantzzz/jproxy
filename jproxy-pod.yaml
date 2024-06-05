@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jproxy-pod
+  labels:
+    app: jproxy
+spec:
+  containers:
+  - name: jproxy
+    image: ghcr.io/gantzzz/jproxy:latest
+    ports:
+    - containerPort: 8810
+    securityContext:
+      privileged: true
+      capabilities:
+        add: ["NET_RAW", "NET_BIND_SERVICE"]

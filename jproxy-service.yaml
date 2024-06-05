@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jproxy-service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "shared-ip"
+spec:
+  type: LoadBalancer
+  selector:
+    app: jproxy
+  ports:
+    - name: jproxy-port
+      protocol: UDP
+      port: 8810
+      targetPort: 8810
+#  externalIPs:
+#    - 38.180.101.105
